@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RegistrationFormCreateComponent } from './registration-form-create/registration-form-create.component';
 import { RegistrationFormDetailComponent } from './registration-form-detail/registration-form-detail.component';
+import { RegistrationFormEditComponent } from './registration-form-edit/registration-form-edit.component';
 
 const ROUTES = [
   { path: '', redirectTo: 'registrationForm', pathMatch: 'full' },
   { path: 'registrationForm', component: RegistrationFormComponent },
   { path: 'registration-form-detail/:id', component: RegistrationFormDetailComponent },
-  { path: 'registration-form-create', component: RegistrationFormCreateComponent }
+  { path: 'registration-form-create', component: RegistrationFormCreateComponent },
+  { path: 'registration-form-edit/:id', component: RegistrationFormEditComponent }
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ const ROUTES = [
     AppComponent,
     RegistrationFormComponent,
     RegistrationFormCreateComponent,
-    RegistrationFormDetailComponent
+    RegistrationFormDetailComponent,
+    RegistrationFormEditComponent
   ],
   imports: [
     BrowserModule,

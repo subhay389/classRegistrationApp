@@ -15,7 +15,10 @@
     <dd>{{ registrationForm.crns }}</dd>
     <dt>Pin</dt>
     <dd>{{ registrationForm.pin }}</dd>
-    <dt>UPdated At</dt>
-    <dd>{{ registrationForm.updated_at }}</dd>
   </dl>
+  <div class="row">
+    <div class="col-md-12">
+      <a [routerLink]="['/registration-form-edit', registrationForm._id]" class="btn btn-success">EDIT</a>
+    </div>
+  </div>
 </div>

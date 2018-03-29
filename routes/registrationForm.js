@@ -17,16 +17,18 @@ router.get('/', function(req, res, next) {
 /* GET SINGLE RegistrationForm BY ID */
 router.get('/:id', function(req, res, next) {
   console.log("--------------inside routes get by id")
-  RegistrationForm.registration_forms.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+  RegistrationForm.registration_forms.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, form){
+		if (err){
+			res.send(err);
+		}
+		res.json(form);
+	});
 });
 
 /* SAVE RegistrationForm */
 router.post('/', function(req, res, next) {
   console.log("------------inside routes save")
-  RegistrationForm.registration_forms.create(req.body, function (err, post) {
+  RegistrationForm.registration_forms.save(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
