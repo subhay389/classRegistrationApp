@@ -45,7 +45,9 @@ router.post('/', function(req, res, next) {
 
 router.put('/:id', function(req, res, next) {
   console.log("------------inside routes update")
-  console.log(req.params.id);
+  console.log(req.body);
+  console.log(req.body._id);
+  delete(req.body._id)
   console.log(mongojs.ObjectId(req.params.id));
   RegistrationForm.registration_forms.update({_id: mongojs.ObjectID(req.params.id)}, req.body, {}, function(err, form){
   //RegistrationForm.registration_forms.update(req.params.id, req.body, {}, function(err, form){  
