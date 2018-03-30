@@ -2,7 +2,7 @@
   <h1>Edit Form</h1>
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="updateRegistrationForm(registrationForm._id)" #bookForm="ngForm">
+      <form (ngSubmit)="updateRegistrationForm(registrationForm._id)" #thisForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" [(ngModel)]="registrationForm.name" name="name" required>
@@ -29,10 +29,10 @@
         </div>
         <div class="form-group">
           <label for="name">Crn</label>
-          <input type="number" class="form-control" [(ngModel)]="registrationForm.crns" name="crns" required>
+          <input type="text" class="form-control" [(ngModel)]="registrationForm.crns" name="crns" required>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-success" [disabled]="!registrationFormForm.form.valid">Update</button>
+          <button type="submit" class="btn btn-success" [disabled]="!thisForm.form.valid">Update</button>
         </div>
       </form>
     </div>

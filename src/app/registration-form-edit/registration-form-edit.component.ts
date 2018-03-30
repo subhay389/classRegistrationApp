@@ -19,19 +19,24 @@ export class RegistrationFormEditComponent implements OnInit {
   }
 
   getRegistrationForm(id) {
+    console.log(id);
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
-      console.log("--------edit----------")
       console.log(this.registrationForm);
     }, (err) => {
       console.log(err);
     });
   }
-
   updateRegistrationForm(id) {
+    console.log("edit update -------")
+    console.log(id);
     this.registrationFormService.updateRegistrationForm(id, this.registrationForm).then((result) => {
-      let id = result['_id'];
-      this.router.navigate(['/registration-form-details', id]);
+      console.log(result);
+      let newid = result['_id'];
+      console.log('**********');
+      console.log(newid);
+      //this.router.navigate(['/registration-form-detail', newid]);
+      console.log('edit update finish------')
     }, (err) => {
       console.log(err);
     });

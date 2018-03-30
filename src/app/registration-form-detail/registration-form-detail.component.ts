@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { RegistrationFormService } from '../registration-form.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-form-detail',
@@ -12,7 +12,7 @@ export class RegistrationFormDetailComponent implements OnInit {
 
   registrationForm = {};
 
-  constructor(private route: ActivatedRoute, private registrationFormService: RegistrationFormService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private registrationFormService: RegistrationFormService) { }
 
   ngOnInit() {
     this.getRegistrationFormDetail(this.route.snapshot.params['id']);
@@ -27,5 +27,13 @@ export class RegistrationFormDetailComponent implements OnInit {
       console.log(err);
     });
   }
+  
+  deleteRegistrationForm(id) {
+    this.registrationFormService.deleteRegistrationForm(id).then((result) => {
+      this.router.navigate(['/registrationForm']);
+    }, (err) => {
+      console.log(err);
+    });
+  }       
 
 }

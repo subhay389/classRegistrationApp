@@ -47,6 +47,7 @@ export class RegistrationFormService {
 
   updateRegistrationForm(id, data) {
     return new Promise((resolve, reject) => {
+      console.log("inside service update form")
         this.http.put('/registrationForm/'+id, data)
           .map(res => res.json())
           .subscribe(res => {
@@ -54,7 +55,9 @@ export class RegistrationFormService {
           }, (err) => {
             reject(err);
           });
+          console.log("inside service update form finish")
     });
+    
   }
 
   deleteRegistrationForm(id) {

@@ -35,21 +35,39 @@ router.post('/', function(req, res, next) {
 });
 
 /* UPDATE RegistrationForm */
+// router.put('/:id', function(req, res, next) {
+//   console.log("------------inside routes update")
+//   RegistrationForm.registration_forms.update(req.params.id, req.body, function (err, post) {
+//     if (err) return next(err);
+//     res.json(post);
+//   });
+// });
+
 router.put('/:id', function(req, res, next) {
   console.log("------------inside routes update")
-  RegistrationForm.registration_forms.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+  console.log(req.params.id);
+  console.log(mongojs.ObjectId(req.params.id));
+  RegistrationForm.registration_forms.update({_id: mongojs.ObjectID(req.params.id)}, req.body, {}, function(err, form){
+  //RegistrationForm.registration_forms.update(req.params.id, req.body, {}, function(err, form){  
+  console.log("------------inside routes update finish") 
+   if (err){
+			res.send(err);
+		}
+		res.json(form);
   });
+  
 });
+
 
 /* DELETE RegistrationForm */
 router.delete('/:id', function(req, res, next) {
   console.log("-------------inside routes delete")
-  RegistrationForm.registration_forms.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+  RegistrationForm.registration_forms.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, form){
+		if (err){
+			res.send(err);
+		}
+		res.json(form);
+	});
 });
 
 module.exports = router;
