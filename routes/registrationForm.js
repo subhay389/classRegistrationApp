@@ -44,6 +44,7 @@ router.post('/', function(req, res, next) {
 // });
 
 router.put('/:id', function(req, res, next) {
+  delete req.body._id;
   console.log("------------inside routes update")
   console.log(req.params.id);
   console.log(mongojs.ObjectId(req.params.id));
