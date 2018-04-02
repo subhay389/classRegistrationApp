@@ -7,6 +7,19 @@ export class RegistrationFormService {
 
   constructor(private http: Http) { }
 
+  login(){
+    console.log('Inside service login')
+    return new Promise((resolve, reject) => {
+      this.http.get('/registrationForm/auth/google')
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   getAllRegistrationForm() {
     console.log("inside service getForm");
     return new Promise((resolve, reject) => {
@@ -70,5 +83,7 @@ export class RegistrationFormService {
           });
     });
   }
+
+
 
 }

@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RegistrationFormService } from './registration-form.service';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { Angular2SocialLoginModule } from "angular2-social-login";
 
 
 import { AppComponent } from './app.component';
@@ -12,14 +13,22 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { RegistrationFormCreateComponent } from './registration-form-create/registration-form-create.component';
 import { RegistrationFormDetailComponent } from './registration-form-detail/registration-form-detail.component';
 import { RegistrationFormEditComponent } from './registration-form-edit/registration-form-edit.component';
+import { LoginPageComponent} from './login-page/login-page.component';
 
 const ROUTES = [
-  { path: '', redirectTo: 'registrationForm', pathMatch: 'full' },
-  { path: 'registrationForm', component: RegistrationFormComponent },
+  { path: '', redirectTo: 'login-page', pathMatch: 'full' },
+  { path: 'login-page', component: LoginPageComponent },
+  { path: 'registration-form/:id', component: RegistrationFormComponent },
   { path: 'registration-form-detail/:id', component: RegistrationFormDetailComponent },
   { path: 'registration-form-create', component: RegistrationFormCreateComponent },
   { path: 'registration-form-edit/:id', component: RegistrationFormEditComponent }
 ];
+
+let providers = {
+  "google": {
+    "clientId": "517663893817-getosg95ubfp7umt763hcnbeed5n6lkk.apps.googleusercontent.com"
+  }
+};
 
 @NgModule({
   declarations: [
@@ -27,11 +36,13 @@ const ROUTES = [
     RegistrationFormComponent,
     RegistrationFormCreateComponent,
     RegistrationFormDetailComponent,
-    RegistrationFormEditComponent
+    RegistrationFormEditComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    Angular2SocialLoginModule,
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
@@ -41,4 +52,8 @@ const ROUTES = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(){}
+}
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
