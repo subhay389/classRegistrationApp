@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationFormService } from '../registration-form.service';
-
+import {Form} from '../../../Form';
 
 @Component({
   selector: 'app-registration-form-edit',
@@ -10,8 +10,19 @@ import { RegistrationFormService } from '../registration-form.service';
 })
 export class RegistrationFormEditComponent implements OnInit {
 
+  // registrationForm = {
+  //   studentId: '',
+  //   name: '',
+  //   degree: '',
+  //   email: '',
+  //   advisor: '',
+  //   term: '',
+  //   crns: '',
+  //   isApproved: false,
+  //   updated_at: Date.now
+  // };
   registrationForm = {};
-
+  
   constructor(private registrationFormService: RegistrationFormService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -22,13 +33,25 @@ export class RegistrationFormEditComponent implements OnInit {
     console.log(id);
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
-      console.log(this.registrationForm);
     }, (err) => {
       console.log(err);
     });
   }
+
   updateRegistrationForm(id) {
-    this.registrationFormService.updateRegistrationForm(id, this.registrationForm).then((result) => {
+    
+    var newRegistrationForm = {
+      studentId: this.registrationForm["studentId"],
+      name: this.registrationForm["name"],
+      degree: this.registrationForm["degree"],
+      email: this.registrationForm["email"],
+      advisor: this.registrationForm["advisor"],
+      term: this.registrationForm["term"],
+      crns: (this.registrationForm["crns"]).split(","),
+      isApproved: this.registrationForm["isApproved"],
+      updated_at: Date.now
+    }
+    this.registrationFormService.updateRegistrationForm(id, newRegistrationForm).then((result) => {
       this.router.navigate(['/registration-form-detail', id]);
     }, (err) => {
       console.log(err);
