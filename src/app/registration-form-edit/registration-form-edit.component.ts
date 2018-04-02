@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationFormService } from '../registration-form.service';
-import {Form} from '../../../Form';
 
 @Component({
   selector: 'app-registration-form-edit',
@@ -10,17 +9,6 @@ import {Form} from '../../../Form';
 })
 export class RegistrationFormEditComponent implements OnInit {
 
-  // registrationForm = {
-  //   studentId: '',
-  //   name: '',
-  //   degree: '',
-  //   email: '',
-  //   advisor: '',
-  //   term: '',
-  //   crns: '',
-  //   isApproved: false,
-  //   updated_at: Date.now
-  // };
   registrationForm = {};
   
   constructor(private registrationFormService: RegistrationFormService, private router: Router, private route: ActivatedRoute) { }

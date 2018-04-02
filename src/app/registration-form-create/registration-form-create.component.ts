@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationFormService } from '../registration-form.service';
-import {Form} from '../../../Form';
 
 @Component({
   selector: 'app-registration-form-create',
@@ -10,7 +9,6 @@ import {Form} from '../../../Form';
 })
 export class RegistrationFormCreateComponent implements OnInit {
 
-  registrationForm: Form[];
   studentId: string;
   name: string;
   degree: string;
