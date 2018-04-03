@@ -7,6 +7,19 @@ export class RegistrationFormService {
 
   constructor(private http: Http) { }
 
+  saveUser(data){
+    console.log("service save user")
+    return new Promise((resolve, reject) => {
+      this.http.post('/registrationForm/saveUser', data)
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   login(){
     console.log('Inside service login')
     return new Promise((resolve, reject) => {
@@ -20,10 +33,22 @@ export class RegistrationFormService {
     });
   }
 
-  getAllRegistrationForm() {
+  saveRegistrationForm(data) {
+    return new Promise((resolve, reject) => {
+        this.http.post('/registrationForm', data)
+          .map(res => res.json())
+          .subscribe(res => {
+            resolve(res);
+          }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getAllRegistrationForm(id) {
     console.log("inside service getForm");
     return new Promise((resolve, reject) => {
-      this.http.get('/registrationForm')
+      this.http.get('/registrationForm/allForm/' + id)
         .map(res => res.json())
         .subscribe(res => {
           resolve(res);
@@ -46,17 +71,7 @@ export class RegistrationFormService {
     });
   }
 
-  saveRegistrationForm(data) {
-    return new Promise((resolve, reject) => {
-        this.http.post('/registrationForm', data)
-          .map(res => res.json())
-          .subscribe(res => {
-            resolve(res);
-          }, (err) => {
-            reject(err);
-          });
-    });
-  }
+
 
   updateRegistrationForm(id, data) {
     return new Promise((resolve, reject) => {

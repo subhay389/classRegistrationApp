@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationFormService } from '../registration-form.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { RegistrationFormService } from '../registration-form.service';
 })
 export class RegistrationFormCreateComponent implements OnInit {
 
+  uid: any;
   studentId: string;
   name: string;
   degree: string;
@@ -20,14 +21,20 @@ export class RegistrationFormCreateComponent implements OnInit {
   pin: {type: String, default: 'Not Approved'};
   updated_at: { type: Date };
 
-  constructor(private registratoinFormService: RegistrationFormService, private router: Router) { }
+  constructor(private registratoinFormService: RegistrationFormService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.getUid(this.route.snapshot.params['id']);
+  }
+
+  getUid(id){
+    this.uid = id;
   }
 
   saveRegistrationForm() {
 
     var newForm = {
+      uid: this.uid,
       studentId: this.studentId,
       name: this.name,
       degree: this.degree,

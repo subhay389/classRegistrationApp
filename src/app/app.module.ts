@@ -6,7 +6,7 @@ import { RegistrationFormService } from './registration-form.service';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Angular2SocialLoginModule } from "angular2-social-login";
-
+import { FilterPipe }from './filter.pipe';
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -20,7 +20,7 @@ const ROUTES = [
   { path: 'login-page', component: LoginPageComponent },
   { path: 'registration-form/:id', component: RegistrationFormComponent },
   { path: 'registration-form-detail/:id', component: RegistrationFormDetailComponent },
-  { path: 'registration-form-create', component: RegistrationFormCreateComponent },
+  { path: 'registration-form-create/:id', component: RegistrationFormCreateComponent },
   { path: 'registration-form-edit/:id', component: RegistrationFormEditComponent }
 ];
 
@@ -37,7 +37,8 @@ let providers = {
     RegistrationFormCreateComponent,
     RegistrationFormDetailComponent,
     RegistrationFormEditComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

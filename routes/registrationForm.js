@@ -8,12 +8,16 @@ var passport = require('passport');
 var RegistrationForm = mongojs('mongodb://shitosh:shitosh@ds253918.mlab.com:53918/hu_registration', ['registration_forms']);
 
 /* GET ALL RegistrationForm */
-router.get('/', function(req, res, next) {
+router.get('/allForm/:id', function(req, res, next) {
   console.log('------------Inside routes get all');
-  RegistrationForm.registration_forms.find(function (err, products) {
-    if (err) return next(err);
-    res.json(products);
-  });
+  RegistrationForm.registration_forms.find({uid: req.params.id}, function(err, form){
+		if (err){
+      res.send(err);
+		}
+    console.log(form);
+    res.json(form);
+    
+	});
 });
 
 /* GET SINGLE RegistrationForm BY ID */
@@ -74,7 +78,9 @@ router.get('/logout', function(req, res){
 })
 
 
-router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
 
 
 
@@ -95,6 +101,17 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
+
+/*save user to database*/
+router.post('/saveUser', function(req, res, next) {
+  console.log("------------inside routes save user")
+  console.log(req.body.uid)
+  console.log(req.body)
+  RegistrationForm.users.update({uid: req.body.uid}, req.body, {},  function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 module.exports = router;
 //module.exports = passport;

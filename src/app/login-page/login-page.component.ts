@@ -10,37 +10,23 @@ import { AuthService } from "angular2-social-login";
 })
 export class LoginPageComponent implements OnDestroy {
 
-  // constructor(private route: ActivatedRoute, private router: Router, private registrationFormService: RegistrationFormService) { }
-
-  // ngOnInit() {
-  // }
-  
-  // login(){
-  //   console.log("LOGIN");
-  //   this.registrationFormService.login().then((res) => {
-  //     console.log(res);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
-
   public user;
   sub: any;
   data: any;
 
-  constructor(public _auth: AuthService, private router: Router){ }
+  constructor(public _auth: AuthService, private router: Router, private registrationFormService: RegistrationFormService){ }
   
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data) => {
-                  //console.log(data);
+                  console.log("inside sign in");
                   this.data = data;
                   //user data 
                   //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
                 }
     
     )
-    console.log(this.data.uid);
+    this.registrationFormService.saveUser(this.data);
     this.router.navigate(['/registration-form', this.data.uid]);
   }
 

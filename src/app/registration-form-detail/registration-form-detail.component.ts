@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RegistrationFormDetailComponent implements OnInit {
 
   registrationForm = {};
+  uid: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private registrationFormService: RegistrationFormService) { }
 
@@ -22,6 +23,8 @@ export class RegistrationFormDetailComponent implements OnInit {
     console.log(id);
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
+      console.log(this.registrationForm['uid']);
+      this.uid = this.registrationForm['uid'];
       console.log(this.registrationForm);
     }, (err) => {
       console.log(err);
@@ -30,7 +33,8 @@ export class RegistrationFormDetailComponent implements OnInit {
   
   deleteRegistrationForm(id) {
     this.registrationFormService.deleteRegistrationForm(id).then((result) => {
-      this.router.navigate(['/registrationForm']);
+      this.router.navigate(['/registration-form', id]);
+      
     }, (err) => {
       console.log(err);
     });

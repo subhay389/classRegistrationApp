@@ -9,17 +9,6 @@ import { RegistrationFormService } from '../registration-form.service';
 })
 export class RegistrationFormEditComponent implements OnInit {
 
-  // registrationForm = {
-  //   studentId: '',
-  //   name: '',
-  //   degree: '',
-  //   email: '',
-  //   advisor: '',
-  //   term: '',
-  //   crns: '',
-  //   isApproved: false,
-  //   updated_at: Date.now
-  // };
   registrationForm = {};
   
   constructor(private registrationFormService: RegistrationFormService, private router: Router, private route: ActivatedRoute) { }
@@ -46,7 +35,7 @@ export class RegistrationFormEditComponent implements OnInit {
       email: this.registrationForm["email"],
       advisor: this.registrationForm["advisor"],
       term: this.registrationForm["term"],
-      crns: (this.registrationForm["crns"]).split(","),
+      crns: ((this.registrationForm["crns"])+ "").split(","),
       isApproved: this.registrationForm["isApproved"],
       updated_at: Date.now
     }

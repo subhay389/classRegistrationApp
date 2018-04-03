@@ -1,11 +1,11 @@
 <div class="container">
   <h1>Registration Form
-    <!-- <a [routerLink]="['/registration-form-create']" class="btn btn-default btn-lg"> -->
-      <button (click)="navigateCreatePage()">Create new form</button>
+    <button class="btn btn-default btn-lg" (click)="navigateCreatePage()">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </a>
+    </button>
+    <h5><button (click)="logout()">logout</button></h5>
   </h1>
-  <h3><button (click)="logout()">logout</button></h3>
+  
   <table class="table">
     <thead>
       <tr>
@@ -15,11 +15,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let form of registrationForm">
+    <!-- <input [(ngModel)]="searchText" placeholder="search text goes here"> -->
+      <!-- <tr *ngFor="let form of registrationForm | filter : searchText"> -->
+      <tr *ngFor="let form of registrationForm "> 
         <td>{{ form.term }}</td>
         <td>{{ form.pin }}</td>
-        <!-- <td><a [routerLink]="['/registration-form-detail', form._id]">Details</a></td> -->
-        <td><button (click)="nagivageDetailsPage(form._id)">Details</button></td>
+        <td><a [routerLink]="['/registration-form-detail', form._id]">Details</a></td>
       </tr>
     </tbody>
   </table>
