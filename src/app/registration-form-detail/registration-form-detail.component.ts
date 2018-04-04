@@ -23,7 +23,6 @@ export class RegistrationFormDetailComponent implements OnInit {
     console.log(id);
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
-      console.log(this.registrationForm['uid']);
       this.uid = this.registrationForm['uid'];
       console.log(this.registrationForm);
     }, (err) => {
@@ -32,9 +31,9 @@ export class RegistrationFormDetailComponent implements OnInit {
   }
   
   deleteRegistrationForm(id) {
+    console.log(id)
     this.registrationFormService.deleteRegistrationForm(id).then((result) => {
-      this.router.navigate(['/registration-form', id]);
-      
+      this.router.navigate(['/registration-form', this.uid]);
     }, (err) => {
       console.log(err);
     });

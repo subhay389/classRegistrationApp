@@ -29,6 +29,7 @@ export class RegistrationFormEditComponent implements OnInit {
   updateRegistrationForm(id) {
     
     var newRegistrationForm = {
+      uid: this.registrationForm['uid'],
       studentId: this.registrationForm["studentId"],
       name: this.registrationForm["name"],
       degree: this.registrationForm["degree"],
