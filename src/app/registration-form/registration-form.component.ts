@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { RegistrationFormService } from '../registration-form.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
@@ -10,9 +10,14 @@ import { LoginPageComponent } from '../login-page/login-page.component';
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.css']
+  styleUrls: ['./registration-form.component.css'],
 })
-export class RegistrationFormComponent implements OnInit{
+export class RegistrationFormComponent implements OnInit, OnDestroy{
+
+  @ViewChild(LoginPageComponent) loginPageComponent: LoginPageComponent;
+  
+  //@Input() loginPageComponent: LoginPageComponent;
+
 
   uid: any;
   registrationForm: any;
@@ -22,15 +27,14 @@ export class RegistrationFormComponent implements OnInit{
   ngOnInit() {
     this.getRegistrationFormList(this.route.snapshot.params['id']);
 
-    this.getLoginId(this.route.snapshot.params['id']);
-  }
-  getLoginId(id){
-    this.uid = id;
+    this.uid = this.route.snapshot.params['id']
+
+    //console.log(this.loginPageComponent.loggedIn);
   }
 
-  hack(val) {
-    return Array.from(val);
-  }
+  // hack(val) {
+  //   return Array.from(val);
+  // }
 
 
   nagivageDetailsPage(formID){
@@ -51,6 +55,13 @@ export class RegistrationFormComponent implements OnInit{
       console.log(err);
     });
   }
-  
+
+  ngOnDestroy(){
+    console.log("onDistroy")
+  }
+
+  // logout(){
+  //   console.log("logout button clicked")
+  // }
 
 }

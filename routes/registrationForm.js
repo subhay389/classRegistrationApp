@@ -104,10 +104,8 @@ function isLoggedIn(req, res, next) {
 
 /*save user to database*/
 router.post('/saveUser', function(req, res, next) {
-  console.log("------------inside routes save user")
-  console.log(req.body.uid)
-  console.log(req.body)
-  RegistrationForm.users.update({uid: req.body.uid}, req.body, {},  function (err, post) {
+  console.log("------------inside routes save")
+  RegistrationForm.student.update({uid: req.body.uid}, req.body, {upsert: true}, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

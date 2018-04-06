@@ -8,7 +8,7 @@ export class RegistrationFormService {
   constructor(private http: Http) { }
 
   saveUser(data){
-    console.log("service save user")
+    console.log("service saveUser()")
     return new Promise((resolve, reject) => {
       this.http.post('/registrationForm/saveUser', data)
         .map(res => res.json())
