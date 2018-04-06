@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   public user;
   sub: any;
-  data: any;
+  public data: any;
   public loggedIn = false;
 
   constructor(public _auth: AuthService, private router: Router, private registrationFormService: RegistrationFormService){ }
@@ -41,27 +41,30 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       uid: this.data.uid,
       provider: this.data.provider,
       email: this.data.email,
-      token: this.data.token
+      token: this.data.token,
     }
     console.log(newForm);
     this.loggedIn = true;
-    this.registrationFormService.saveUser(newForm);
-    this.loggedIn = true;
-    this.router.navigate(['/registration-form', this.data.uid]);
+    this.registrationFormService.saveUser(newForm).then((res) => {
+      this.loggedIn = true;
+      this.router.navigate(['/registration-form', this.data.uid]);
+    }, (err) => {
+      console.log(err);
+    });
+
   }
 
   logout(){
     this._auth.logout().subscribe(
-      (data)=>{console.log(data);this.user=null;}
+      (data)=>{console.log(data);this.data=null;}
     )
     this.loggedIn = false;
-    this.sub.unsubscribe();
-    this.router.navigate(['/']);
+    //this.router.navigate(['/']);
   }
   
   ngOnDestroy(){
     this.sub.unsubscribe();
-    //this.router.navigate(['/']);
+    
   }
 
 }

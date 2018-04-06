@@ -50,14 +50,13 @@ export class RegistrationFormComponent implements OnInit, OnDestroy{
     this.registrationFormService.getAllRegistrationForm(id).then((res) => {
       this.registrationForm = res;
       console.log("all forms of a user" );
-      console.log(this.registrationForm);
     }, (err) => {
       console.log(err);
     });
   }
 
   ngOnDestroy(){
-    console.log("onDistroy")
+
   }
 
   // logout(){

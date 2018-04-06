@@ -111,5 +111,25 @@ router.post('/saveUser', function(req, res, next) {
   });
 });
 
+/*get user */
+router.get('/', function(req, res, next) {
+  console.log('------------Inside routes get all');
+  RegistrationForm.registration_forms.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
+});
+
+router.get('/getUser/:id', function(req, res, next) {
+  console.log('------------Inside routes getUser()');
+  RegistrationForm.student.find({uid: req.params.id}, function(err, form){
+		if (err){
+      res.send(err);
+		}
+    console.log(form);
+    res.json(form);
+    
+	});
+});
 module.exports = router;
 //module.exports = passport;

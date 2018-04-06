@@ -9,6 +9,9 @@ import { RegistrationFormService } from '../registration-form.service';
 })
 export class RegistrationFormCreateComponent implements OnInit {
 
+
+  user: any;
+
   uid: any;
   studentId: string;
   name: string;
@@ -25,10 +28,23 @@ export class RegistrationFormCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getUid(this.route.snapshot.params['id']);
+    this.getUserInfo(this.uid)
   }
 
   getUid(id){
     this.uid = id;
+  }
+
+  getUserInfo(uid){
+    console.log(uid);
+    this.registratoinFormService.getUser(uid).then((result) => {
+      let user = result;
+      this.name = user[0].name;
+      this.email = user[0].email;
+      //console.log(user[0].name);
+    }, (err) => {
+      console.log(err);
+    });;
   }
 
   saveRegistrationForm() {

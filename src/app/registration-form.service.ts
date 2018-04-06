@@ -20,8 +20,21 @@ export class RegistrationFormService {
     });
   }
 
+  getUser(id){
+    console.log('Inside service getUser()')
+    return new Promise((resolve, reject) => {
+      this.http.get('/registrationForm/getUser/' + id)
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   login(){
-    console.log('Inside service login')
+    console.log('Inside service login()')
     return new Promise((resolve, reject) => {
       this.http.get('/registrationForm/auth/google')
         .map(res => res.json())
