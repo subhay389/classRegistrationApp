@@ -11,9 +11,8 @@ import { AuthService } from "angular2-social-login";
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  public user;
   sub: any;
-  public data: any;
+  public data ; 
   public loggedIn = false;
 
   constructor(public _auth: AuthService, private router: Router, private registrationFormService: RegistrationFormService){ }
@@ -24,8 +23,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
-      (data) => {
-                  this.data = data;
+      (info) => {
+                  this.data = info;
                   //user data 
                   //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
                   this.saveUser()
