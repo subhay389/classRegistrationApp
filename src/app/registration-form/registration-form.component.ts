@@ -45,8 +45,6 @@ export class RegistrationFormComponent implements OnInit{
   getRegistrationFormList(id) {
     this.registrationFormService.getAllRegistrationForm(id).then((res) => {
       this.registrationForm = res;
-      console.log("all forms of a user" );
-      console.log(this.registrationForm);
     }, (err) => {
       console.log(err);
     });

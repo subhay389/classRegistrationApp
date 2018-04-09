@@ -5,7 +5,7 @@ var mongojs = require('mongojs');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var passport = require('passport');
 //var RegistrationForm = require('../models/RegistrationForm.js');
-var RegistrationForm = mongojs('mongodb://shitosh:shitosh@ds253918.mlab.com:53918/hu_registration', ['registration_forms']);
+var RegistrationForm = mongojs('mongodb://shitosh:shitosh@ds253918.mlab.com:53918/hu_registration', ['registration_forms', 'crn']);
 
 /* GET ALL RegistrationForm */
 router.get('/allForm/:id', function(req, res, next) {
@@ -22,12 +22,24 @@ router.get('/allForm/:id', function(req, res, next) {
 
 /* GET SINGLE RegistrationForm BY ID */
 router.get('/:id', function(req, res, next) {
-  console.log("--------------inside routes get by id")
   RegistrationForm.registration_forms.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, form){
 		if (err){
 			res.send(err);
 		}
 		res.json(form);
+	});
+});
+
+/* GET list of CRNS */
+router.get('/', function(req, res, next){
+  console.log("--------------inside routes get CRN")
+  RegistrationForm.crn.find({}, function(err, form){
+		if (err){
+      res.send(err);
+		}
+    console.log(form);
+    res.json(form);
+    
 	});
 });
 

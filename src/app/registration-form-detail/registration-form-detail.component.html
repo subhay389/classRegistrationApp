@@ -11,12 +11,17 @@
     <dd>{{ registrationForm.email }}</dd>
     <dt>Advisor</dt>
     <dd>{{ registrationForm.advisor }}</dd>
-    <dt>Crn</dt>
-    <dd>{{ registrationForm.crns }}</dd>
+    <dt>Courses</dt>
+    <dd>      
+      <div *ngFor="let entry of my_crns | keys">
+      {{entry.key}}: {{entry.value}} <br>
+      </div>
+    </dd>
     <dt>Pin</dt>
     <dd>{{ registrationForm.pin }}</dd>
   </dl>
-  <div class="row">
+
+<div class="row">
     <div class="col-md-12">
       <a [routerLink]="['/registration-form-edit', registrationForm._id]" class="btn btn-success">EDIT</a>
       <button class="btn btn-danger" type="button" (click)="deleteRegistrationForm(registrationForm._id)">DELETE</button>

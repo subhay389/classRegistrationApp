@@ -19,7 +19,6 @@ export class LoginPageComponent implements OnDestroy {
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data) => {
-                  console.log("inside sign in");
                   this.data = data;
                   //user data 
                   //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
