@@ -9,7 +9,7 @@ import { AuthService } from "angular2-social-login";
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit, OnDestroy {
+export class LoginPageComponent implements OnInit {
 
   sub: any;
   public data ; 
@@ -23,14 +23,14 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
-          (info) => {
-                  this.data = info;
+          (data) => {
+                  this.data = data;
                   //user data 
                   //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
                   this.saveUser()
                 }
     )
-
+    console.log(this.sub)
   }
 
   saveUser(){
@@ -54,16 +54,22 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   logout(){
+
     this._auth.logout().subscribe(
       (data)=>{console.log(data);this.data=null;}
+      
     )
-    this.loggedIn = false;
+ 
+    //   this.sub.unsubscribe();
+    
     //this.router.navigate(['/']);
   }
   
-  ngOnDestroy(){
-    this.sub.unsubscribe();
+  // ngOnDestroy(){
+  //   console.log("Ondestroy")
+  //   console.log(this.sub)
+  //   this.sub.unsubscribe();
     
-  }
+  // }
 
 }

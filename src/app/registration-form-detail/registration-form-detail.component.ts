@@ -21,6 +21,8 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
     return keys;
   }
 
+  advisor: any;
+  
   registrationForm = {};
   all_crns = {};
   crn_array = [];
@@ -37,6 +39,7 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
   getRegistrationFormDetail(id) {
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
+      this.getOneAdvisor(this.registrationForm['advisor']);
       this.registrationFormService.getCRN().then((res) => {
         this.all_crns = res[0];
         this.crn_array = this.registrationForm["crns"];
@@ -59,6 +62,7 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
         console.log(myJSON1);
         console.log(myJSON2);
         console.log(typeof this.all_crns === typeof this.my_crns);
+        
       }, (err) => {
         console.log(err);
       });
@@ -78,6 +82,20 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
     }, (err) => {
       console.log(err);
     });
-  }       
+  }     
+
+  getOneAdvisor(advisorid){
+    this.registrationFormService.getOneAdvisor(advisorid).then((result) => {
+      console.log("This Advisor")
+      console.log(advisorid)
+      console.log(result)
+      console.log(this.registrationForm["advisor"])
+      console.log(result[0]["name"])
+      this.registrationForm["advisor"] = result[0]["name"]
+      this.advisor = result;
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
 }

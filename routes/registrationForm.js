@@ -79,30 +79,30 @@ router.delete('/:id', function(req, res, next) {
 	});
 });
 
-router.get('/profile', isLoggedIn, function(req, res) {
-  res.send({user : req.user}) // get the user out of session and pass to template
+// router.get('/profile', isLoggedIn, function(req, res) {
+//   res.send({user : req.user}) // get the user out of session and pass to template
 
-});
+// });
 
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-})
-
-
-router.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+// router.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/');
+// })
 
 
+// router.get('/auth/google', passport.authenticate('google', {
+//   scope: ['profile', 'email']
+// }));
 
-router.get('/auth/google/callback',
-  passport.authenticate('google', 
-  {
-    successRedirect : '/registration-form',
-    failureRedirect : '/'
-  }
-));
+
+
+// router.get('/auth/google/callback',
+//   passport.authenticate('google', 
+//   {
+//     successRedirect : '/registration-form',
+//     failureRedirect : '/'
+//   }
+// ));
 
 function isLoggedIn(req, res, next) {
 
@@ -123,15 +123,7 @@ router.post('/saveUser', function(req, res, next) {
   });
 });
 
-/*get user */
-router.get('/', function(req, res, next) {
-  console.log('------------Inside routes get all');
-  RegistrationForm.registration_forms.find(function (err, products) {
-    if (err) return next(err);
-    res.json(products);
-  });
-});
-
+/**Get User by ID */
 router.get('/getUser/:id', function(req, res, next) {
   console.log('------------Inside routes getUser()');
   RegistrationForm.student.find({uid: req.params.id}, function(err, form){
@@ -143,5 +135,30 @@ router.get('/getUser/:id', function(req, res, next) {
     
 	});
 });
+
+/**Get All Advisor List */
+router.get('/getAllAdvisor/:id', function(req, res, next) {
+  console.log('------------Inside routes get all advisor');
+  RegistrationForm.advisor.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
+  
+});
+
+router.get('/getOneAdvisor/:id', function(req, res, next) {
+  console.log('------------Inside routes get one advisor');
+  RegistrationForm.advisor.find({uid: req.params.id}, function(err, form){
+		if (err){
+      res.send(err);
+		}
+    console.log(form);
+    res.json(form);
+    
+	});
+  
+});
+
+
 module.exports = router;
 //module.exports = passport;

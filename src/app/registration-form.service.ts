@@ -95,6 +95,32 @@ export class RegistrationFormService {
     });
   }
 
+  getAllAdvisor(id) {
+    
+    console.log("Inside serviece getAllAdvisor()")
+    return new Promise((resolve, reject) => {
+      this.http.get('/registrationForm/getAllAdvisor/' + id)
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res)
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  getOneAdvisor(id) {
+    console.log("Inside serviece getAllAdvisor()")
+    return new Promise((resolve, reject) => {
+      this.http.get('/registrationForm/getOneAdvisor/' + id)
+        .map(res => res.json())
+        .subscribe(res => {
+          resolve(res)
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 
 
   updateRegistrationForm(id, data) {

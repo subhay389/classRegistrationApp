@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { KeysPipe }    from './filter.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -42,6 +46,9 @@ let providers = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatSelectModule,
     FormsModule,
     Angular2SocialLoginModule,
     HttpModule,
