@@ -43,7 +43,7 @@ router.get('/', function(req, res, next){
 	});
 });
 
-/* SAVE RegistrationForm */
+/* SAVE Registration Form */
 router.post('/', function(req, res, next) {
   console.log("------------inside routes save")
   RegistrationForm.registration_forms.save(req.body, function (err, post) {
@@ -52,7 +52,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* UPDATE RegistrationForm */
+/* UPDATE Registration Form */
 router.put('/:id', function(req, res, next) {
   delete req.body._id;
 
@@ -101,7 +101,7 @@ router.delete('/:id', function(req, res, next) {
 //   {
 //     successRedirect : '/registration-form',
 //     failureRedirect : '/'
-//   }
+//}
 // ));
 
 function isLoggedIn(req, res, next) {
@@ -136,7 +136,7 @@ router.get('/getUser/:id', function(req, res, next) {
 	});
 });
 
-/**Get All Advisor List */
+/**Get A list of all Advisors */
 router.get('/getAllAdvisor/:id', function(req, res, next) {
   console.log('------------Inside routes get all advisor');
   RegistrationForm.advisor.find(function (err, products) {
