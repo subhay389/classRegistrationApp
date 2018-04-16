@@ -21,7 +21,7 @@ export class RegistrationFormCreateComponent implements OnInit {
   term: string;
   crns: string;
   isApproved: {type: Boolean, default: false};
-  pin: {type: String, default: 'Not Approved'};
+  pin: string;
   updated_at: { type: Date };
 
   constructor(private registratoinFormService: RegistrationFormService, private route: ActivatedRoute, private router: Router) { }
@@ -60,7 +60,8 @@ export class RegistrationFormCreateComponent implements OnInit {
       term: this.term,
       crns: (this.crns).split(","),
       isApproved: this.isApproved,
-      updated_at: Date.now
+      updated_at: Date.now,
+      pin: 'N/A'
     }
     console.log(newForm);
     this.registratoinFormService.saveRegistrationForm(newForm).then((result) => {

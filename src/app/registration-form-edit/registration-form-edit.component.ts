@@ -10,6 +10,7 @@ import { RegistrationFormService } from '../registration-form.service';
 export class RegistrationFormEditComponent implements OnInit {
 
   registrationForm = {};
+  advisor: any;
   
   constructor(private registrationFormService: RegistrationFormService, private router: Router, private route: ActivatedRoute) { }
 
@@ -21,6 +22,7 @@ export class RegistrationFormEditComponent implements OnInit {
     console.log(id);
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
+      this.getOneAdvisor(this.registrationForm['advisor']);
     }, (err) => {
       console.log(err);
     });
@@ -46,6 +48,21 @@ export class RegistrationFormEditComponent implements OnInit {
       console.log(err);
     });
   }
+
+  getOneAdvisor(advisorid){
+    this.registrationFormService.getOneAdvisor(advisorid).then((result) => {
+      console.log("This Advisor")
+      console.log(advisorid)
+      console.log(result)
+      console.log(this.registrationForm["advisor"])
+      console.log(result[0]["name"])
+      this.registrationForm["advisor"] = result[0]["name"]
+      this.advisor = result;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
 
 
 }
