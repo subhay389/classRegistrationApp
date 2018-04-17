@@ -104,6 +104,49 @@ router.delete('/:id', function(req, res, next) {
 //}
 // ));
 
+
+function isLoggedIn(req, res, next) {
+
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated())
+      return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+
+/*save user to database*/
+router.post('/saveUser', function(req, res, next) {
+  console.log("------------inside routes save")
+  RegistrationForm.student.update({uid: req.body.uid}, req.body, {upsert: true}, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/**Get User by ID */
+router.get('/getUser/:id', function(req, res, next) {
+  console.log('------------Inside routes getUser()');
+  RegistrationForm.student.find({uid: req.params.id}, function(err, form){
+		if (err){
+      res.send(err);
+		}
+    console.log(form);
+    res.json(form);
+    
+	});
+});
+
+/**Get A list of all Advisors */
+router.get('/getAllAdvisor/:id', function(req, res, next) {
+  console.log('------------Inside routes get all advisor');
+  RegistrationForm.advisor.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
+  
+});
+
 router.get('/getOneAdvisor/:id', function(req, res, next) {
   console.log('------------Inside routes get one advisor');
   RegistrationForm.advisor.find({uid: req.params.id}, function(err, form){
