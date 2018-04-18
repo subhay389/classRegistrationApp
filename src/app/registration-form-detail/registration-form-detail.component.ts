@@ -22,7 +22,6 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
   }
 
   advisor: any;
-  
   registrationForm = {};
   all_crns = {};
   crn_array = [];
@@ -39,6 +38,7 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
   getRegistrationFormDetail(id) {
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
+      console.log(this.registrationForm);
       this.getOneAdvisor(this.registrationForm['advisor']);
       this.registrationFormService.getCRN().then((res) => {
         this.all_crns = res[0];

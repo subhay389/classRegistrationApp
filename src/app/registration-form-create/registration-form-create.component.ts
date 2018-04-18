@@ -59,9 +59,10 @@ export class RegistrationFormCreateComponent implements OnInit {
       advisor: this.selectedAdvisor,
       term: this.term,
       crns: (this.crns).split(","),
-      isApproved: this.isApproved,
+      isApproved: false,
       updated_at: Date.now,
-      pin: 'N/A'
+      pin: 'N/A',
+      reason: 'N/A'
     }
     console.log(newForm);
     this.registratoinFormService.saveRegistrationForm(newForm).then((result) => {

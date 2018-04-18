@@ -40,7 +40,9 @@ export class RegistrationFormEditComponent implements OnInit {
       term: this.registrationForm["term"],
       crns: ((this.registrationForm["crns"])+ "").split(","),
       isApproved: this.registrationForm["isApproved"],
-      updated_at: Date.now
+      updated_at: Date.now,
+      pin: this.registrationForm['pin'],
+      reason: this.registrationForm['reason']
     }
     this.registrationFormService.updateRegistrationForm(id, newRegistrationForm).then((result) => {
       this.router.navigate(['/registration-form-detail', id]);
@@ -56,8 +58,8 @@ export class RegistrationFormEditComponent implements OnInit {
       console.log(result)
       console.log(this.registrationForm["advisor"])
       console.log(result[0]["name"])
-      this.registrationForm["advisor"] = result[0]["name"]
-      this.advisor = result;
+      //this.registrationForm["advisor"] = result[0]["name"]
+      this.advisor = result[0]["name"];
     }, (err) => {
       console.log(err);
     });
