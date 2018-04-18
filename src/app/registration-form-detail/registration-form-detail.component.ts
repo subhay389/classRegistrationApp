@@ -28,6 +28,7 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
   my_crns = {};
   courses = [];
   uid: any;
+  showReason = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private registrationFormService: RegistrationFormService) { }
 
@@ -38,6 +39,9 @@ export class RegistrationFormDetailComponent implements OnInit, PipeTransform {
   getRegistrationFormDetail(id) {
     this.registrationFormService.showRegistrationForm(id).then((res) => {
       this.registrationForm = res;
+      if (this.registrationForm['reason'] != "N/A"){
+        this.showReason = true;
+      }
       console.log(this.registrationForm);
       this.getOneAdvisor(this.registrationForm['advisor']);
       this.registrationFormService.getCRN().then((res) => {

@@ -20,6 +20,12 @@
     <dt>Pin</dt>
     <dd>{{ registrationForm.pin }}</dd>
   </dl>
+  <div *ngIf="showReason">
+    <dl class="list">
+      <dt>Reason</dt>
+      <dd> {{registrationForm.reason}} </dd>
+    </dl>
+  </div>
 
 <div class="row">
     <div class="col-md-12">
