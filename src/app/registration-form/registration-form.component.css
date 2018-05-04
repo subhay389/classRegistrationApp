@@ -1,0 +1,23 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 900px;
+  }
+  
+  .mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
+  
+  .example-card {
+    max-width: 1000px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Howard_University_seal.svg/1200px-Howard_University_seal.svg.png');
+    background-size: cover;
+  }

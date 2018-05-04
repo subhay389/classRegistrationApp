@@ -1,26 +1,50 @@
-<div class="container">
-  <h1>Registration Form
-    <button class="btn btn-default btn-lg" (click)="navigateCreatePage()">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </button>
-  </h1>
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Term</th>
-        <th>Pin</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <!-- <input [(ngModel)]="searchText" placeholder="search text goes here"> -->
-      <!-- <tr *ngFor="let form of registrationForm | filter : searchText"> -->
-      <tr *ngFor="let form of registrationForm "> 
-        <td>{{ form.term }}</td>
-        <td>{{ form.pin }}</td>
-        <td><a [routerLink]="['/registration-form-detail', form._id]">Details</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+<mat-card class="example-card">
+  <div >
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title><h2>Hi       {{ name }}</h2></mat-card-title>
+        
+
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-header>
+        
+        <mat-card-subtitle><h3>Registration Forms History  <button mat-mini-fab color="primary" (click)="navigateCreatePage()"> + </button></h3></mat-card-subtitle>
+
+    </mat-card-header>
+
+      
+      
+
+
+    
+      <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource" matSort>
+        
+            <!-- Term Column -->
+            <ng-container matColumnDef="term">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Term </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.term}} </mat-cell>
+            </ng-container>
+        
+            <!-- Pin Column -->
+            <ng-container matColumnDef="pin">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Pin </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.pin}} </mat-cell>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="_id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element"> <a [routerLink]="['/registration-form-detail', element._id]"> Details </a> </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+        
+  </div>
+
+</mat-card>

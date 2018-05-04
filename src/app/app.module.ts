@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RegistrationFormService } from './registration-form.service';
 import { RouterModule } from '@angular/router';
@@ -10,7 +10,42 @@ import { KeysPipe }    from './filter.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -34,6 +69,7 @@ let providers = {
   }
 };
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,14 +81,29 @@ let providers = {
     KeysPipe
   ],
   imports: [
+    MatCardModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDialogModule,
+    MatListModule,
+    MatAutocompleteModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatTableModule,
+    MatTabsModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    BrowserModule,
     MatSelectModule,
     FormsModule,
+    MatFormFieldModule,
     Angular2SocialLoginModule,
+    MatNativeDateModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES),
+    MatFormFieldModule,
+    MatInputModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     RegistrationFormService,
